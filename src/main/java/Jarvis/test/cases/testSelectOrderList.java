@@ -15,7 +15,6 @@ import java.sql.*;
 import java.util.concurrent.TimeUnit;
 
 import static Jarvis.test.config.sysConfig.BaseUrl;
-import static Jarvis.test.config.sysConfig.DataBaseUrl;
 import static Jarvis.test.page.LoginPage.loginPath;
 import static Jarvis.test.page.WelfareOrderManagePage.*;
 
@@ -54,18 +53,34 @@ public class testSelectOrderList {
         //3.使用Connection来创建一个Statement对象
         Statement stmt = conn.createStatement();
         //4.执行SQL语句
-        ResultSet rs = ((Statement) stmt).executeQuery("select count(id) from t_prize_info where is_del =0 order by sort_value desc");
-        int recordsTotal = rs.getInt(0);//得到返回数据的数量
+        ResultSet rs = ((Statement) stmt).executeQuery("SELECT count(ID) FROM t_prize_record");
+        int recordsTotal = 0;
+        while (rs.next()){
+            recordsTotal =rs.getInt(1);//得到返回数据的数量
+        }
+        
 
         //总页数
+        int pagesTotal;
         if (recordsTotal%20 == 0){
-            int pagesTotal = recordsTotal/20;
+            pagesTotal = recordsTotal/20;
         }else {
-            int pagesTotal = recordsTotal/20+1;
+            pagesTotal = recordsTotal/20+1;
         }
 
 
-        Assert.assertEquals(pagesTotal,);
+        Assert.assertEquals(driver.findElement(maxPage).getText(),pagesTotal);
+
+        //关闭连接
+        if (rs != null){
+            rs.close();
+        }
+        if (stmt != null){
+            stmt.close();
+        }
+        if (conn !=null){
+            conn.close();
+        }
     }
 
 
