@@ -4,7 +4,7 @@
 <suite name = "testLoginSuite">
     <test name = "testLogin">
         <classes>
-            <class name = "Jarvis.test.cases.testLogin"/>
+            <class name = "Jarvis.test.cases.LoginTest"/>
         </classes>
     </test>
 
