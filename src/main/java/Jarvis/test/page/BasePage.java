@@ -2,50 +2,59 @@ package Jarvis.test.page;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 /*
 BasePage类是所有page类的基类，包括初始化浏览器驱动和一些页面常见的操作。
  */
 public class BasePage {
 
-    public WebDriver driver;
-    public WebDriverWait wait;
+    //public WebDriver driver;
 
-    public BasePage(WebDriver driver) {
-        this.driver = driver;
-        wait = new WebDriverWait(driver, 15);
+//    public BasePage(WebDriver driver) {
+//        this.driver = driver;
+//        //wait = new WebDriverWait((WebDriver) driver, 15);
+//    }
+
+    //封装Element方法
+    public WebElement element(WebDriver driver,By by){
+        WebElement element = driver.findElement(by);
+        return  element;
     }
 
-    public void waitVisibility(By by) {
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(by));
-
+    //封装点击
+    public void click(WebElement element) {
+        if (element !=null){
+            element.click();
+        }else{
+            System.out.println("元素没有定位到，点击失败");
+        }
     }
 
-    //点击
-    public void click(By by) {
-        waitVisibility(by);
-        driver.findElement(by).click();
+    //封装输入
+    public void sendKeys(WebElement element, String value) {
+        if (element !=null){
+            element.clear();
+            element.sendKeys(value);
+        }else{
+            System.out.println("元素没有定位到，输入失败"+value);
+        }
     }
 
-    //输入框输入
-    public void sendKeys(By by, String text) {
-        waitVisibility(by);
-        driver.findElement(by).clear();
-        driver.findElement(by).sendKeys(text);
+    //判断元素是否显示
+    public boolean assertElementIs(WebElement element){
+        return element.isDisplayed();
     }
 
     //获取Text
-    public String getText(By by) {
-        waitVisibility(by);
-        return driver.findElement(by).getText();
+    public String getText(WebElement element) {
+        return element.getText();
     }
 
-    public void assertEquals(By by, String expectedText) {
-        waitVisibility(by);
-        Assert.assertEquals(getText(by), expectedText);
+    public void assertEquals(WebElement element, String expectedText) {
+        Assert.assertEquals(getText(element), expectedText);
     }
+
 }
 
 

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [testLoginSuite]">
+  <listeners>
+    <listener class-name="Jarvis.test.util.ExtentTestNGIReporterListener"/>
+  </listeners>
+  <test thread-count="5" name="loginTest(failed)">
+    <parameter name="password" value="123456"/>
+    <parameter name="username" value="yangxr"/>
+    <classes>
+      <class name="Jarvis.test.cases.LoginTest">
+        <methods>
+          <include name="setup"/>
+          <include name="loginTest" invocation-numbers="0"/>
+          <include name="teardown"/>
+        </methods>
+      </class> <!-- Jarvis.test.cases.LoginTest -->
+    </classes>
+  </test> <!-- loginTest(failed) -->
+</suite> <!-- Failed suite [testLoginSuite] -->

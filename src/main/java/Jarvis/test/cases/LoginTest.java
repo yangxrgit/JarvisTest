@@ -1,19 +1,19 @@
 package Jarvis.test.cases;
 
-import Jarvis.test.page.HomePage;
 import Jarvis.test.page.LoginPage;
+import Jarvis.test.util.Log;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-
-import static Jarvis.test.page.LoginPage.loginPath;
 
 //测试登录
 public class LoginTest extends BaseTest{
+
     //验证登录是否成功，使用的页面元素
     //public By login_user = By.cssSelector("#page-wrapper > div.row.border-bottom > nav > ul > li.dropdown.hidden-xs > a > i");
-    public By login_user = By.xpath("//*[@id=\"page-wrapper\"]/div[1]/nav/ul/li[1]/a/i");
+    public static By login_user = By.xpath("//*[@id=\"page-wrapper\"]/div[1]/nav/ul/li[1]/a/i");
 
     WebDriver driver;
 
@@ -23,14 +23,17 @@ public class LoginTest extends BaseTest{
 //        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 //    }
 
-    @Test //使用账户名和密码登录
-    public void testLogin() throws InterruptedException {
-        HomePage homePage = new HomePage(driver);
-        driver.get(homePage.BaseUrl+loginPath);
+    //使用账户名和密码登录
+    @Test //(dependsOnMethods = {"getLoginHome"})
+    @Parameters({"username","password"})
+    public void loginTest(String username,String password) throws InterruptedException {
+        //HomePage homePage = new HomePage(driver);
+        //homePage.getLoginHome();
         //调用登录
         LoginPage loginPage = new LoginPage(driver);
-        loginPage.login(driver,"yangxr","123456");
+        loginPage.login(driver,username,password);
         Thread.sleep(5000);
+        Log.info("登录测试用例执行完毕");
         //验证
         String loginUserInfo = driver.findElement(login_user).getText();
         Assert.assertEquals(loginUserInfo,"yangxr");
