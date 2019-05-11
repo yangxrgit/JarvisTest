@@ -1,13 +1,24 @@
 package Jarvis.test.cases;
 
-public class testSelectOrderList {
-
+/**
+ * 福利社订单管理列表测试
+ */
+public class WelfareOrderManageListTest extends BaseTest{
+//
 //    //测试福利社订单管理页面的订单列表查询
 //
-//    WebDriver driver;
+//    /**
+//     *
+//     */
+//    private WebDriver driver;
 //
 //    //验证查询全部返回数据总数需要的元素
-//    public By maxPage = By.xpath("//*[@id=\"inner\"]/div/div[5]/div/ul/li[8]");
+//    public By maxPage;
+//
+//    public WelfareOrderManageListTest() {
+//        maxPage = By.xpath("//*[@id=\"inner\"]/div/div[5]/div/ul/li[8]");
+//        driver = new ChromeDriver();
+//    }
 //
 //
 //    @BeforeMethod
@@ -76,7 +87,19 @@ public class testSelectOrderList {
 //
 //        driver.quit();
 //    }
-
+//
+//
+//    //获取所有订单的list
+//    public List<String> listElement(){
+//        List<String> listString = new ArrayList<String>();
+//        WebElement element = driver.findElement(By.className("el-table__body"));
+//        List<WebElement> listElement = element.findElements(By.className("el-table__row"));
+//        for (WebElement el:listElement){
+//            listString.add(el.findElement(By.className("el-table_1_column_5")).getText());
+//        }
+//
+//        return listString;
+//    }
 
 
 }

@@ -4,20 +4,20 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+
 /*
 BasePage类是所有page类的基类，包括初始化浏览器驱动和一些页面常见的操作。
  */
 public class BasePage {
 
-    //public WebDriver driver;
+    public WebDriver driver;
 
-//    public BasePage(WebDriver driver) {
-//        this.driver = driver;
-//        //wait = new WebDriverWait((WebDriver) driver, 15);
-//    }
+    public BasePage(WebDriver driver) {
+        this.driver = driver;
+    }
 
     //封装Element方法
-    public WebElement element(WebDriver driver,By by){
+    public WebElement element(By by){
         WebElement element = driver.findElement(by);
         return  element;
     }

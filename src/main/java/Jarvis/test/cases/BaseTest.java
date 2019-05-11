@@ -9,6 +9,7 @@ import org.testng.annotations.BeforeClass;
 BaseTest类实现的测试前准备动作，测试完成的动作。
  */
 public class BaseTest {
+
     public WebDriver driver;
 
     @BeforeClass
